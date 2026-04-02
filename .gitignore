@@ -1,0 +1,44 @@
+# Model files
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+*.onnx
+
+# Data
+data/
+datasets/
+*.csv
+*.jsonl
+*.parquet
+
+# Cache
+.cache/
+huggingface/
+hf_cache/
+
+# Logs & outputs
+logs/
+wandb/
+runs/
+outputs/
+checkpoints/
+
+# Env
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
