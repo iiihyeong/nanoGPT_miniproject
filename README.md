@@ -1,21 +1,35 @@
-🧠 nanoGPT Reimplementation from Scratch
+# 🧠 nanoGPT Reimplementation from Scratch
 
+> A from-scratch implementation of a **163M-parameter GPT** (GPT-2 Small architecture) in PyTorch, built to understand the Transformer end to end — from tokenization to text generation.
 
-A from-scratch reimplementation of a 163M-parameter GPT in PyTorch, built to understand the Transformer architecture end to end — from tokenization to multi-head self-attention.
+## 📌 Overview
 
+This project rebuilds a GPT-style language model without high-level abstractions, following *Build a Large Language Model (From Scratch)* as a guide and Karpathy's nanoGPT as a reference for cross-checking. Each component was implemented and verified incrementally, from the tokenizer up to a working generation loop.
 
+## 🛠️ What's Implemented
 
-📌 Overview
+- **Tokenizer & data pipeline** — text encoding/decoding and batching for causal language modeling
+- **Self-attention** — scaled dot-product attention with causal masking, built from core tensor operations
+- **Multi-head attention** — parallel heads with query/key/value projections and output projection
+- **Transformer block** — LayerNorm, GELU, feed-forward network, and residual (shortcut) connections
+- **GPT model** — token + positional embeddings and stacked Transformer blocks assembled into a full **163M-parameter** model
+- **Text generation** — a greedy decoding loop that autoregressively predicts the next token
 
-This project rebuilds the core components of a GPT-style model without relying on high-level abstractions, as part of a study bridging statistical theory and hands-on implementation. Each building block is implemented and verified incrementally.
+## 🚀 How to Run
 
-🛠️ Implemented Components
+```bash
+git clone https://github.com/iiihyeong/nanoGPT_miniproject.git
+cd nanoGPT_miniproject
+# Open the chapter notebooks (ch02-ch04) and run the cells top to bottom
+jupyter notebook
+```
 
+The final notebook (`ch04`) assembles the full model and runs a generation example (e.g. `"Hello, I am"` -> next tokens).
 
-Tokenizer & data pipeline — text encoding/decoding and batching for causal language modeling
-Self-attention — scaled dot-product attention built from core tensor operations
-Causal masking — autoregressive masking so each token attends only to past tokens
-Multi-head attention — parallel attention heads combined into a single projection
-GPT model — Transformer blocks (attention + FFN + LayerNorm + residuals) assembled into a full 163M-parameter model
+## 💡 What I Learned
 
-Reimplemented as part of an AI/ML study. Author: Jaehyeong Choi (@iiihyeong)
+Implementing attention by hand made concepts I had only read about in papers concrete. Computing attention scores directly (`queries @ keys.T`) showed how the model measures similarity between tokens, and the final `softmax -> argmax` step made it clear how the model actually *predicts* the next token from those scores. Building the model this way turned the Transformer from an abstract diagram into something I could trace line by line.
+
+---
+
+*Reimplemented as an AI/ML study project. Author: Jaehyeong Choi ([@iiihyeong](https://github.com/iiihyeong))*
